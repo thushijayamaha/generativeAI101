@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Facts</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa;
+        }
+        h1 {
+            color: #00796b;
+        }
+        #fact {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #00796b;
+            border-radius: 10px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00796b;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fun Sea Facts</h1>
+    <div id="fact"></div>
+    <button id="factButton">Show Random Fact</button>
+    <button id="twitterShare" style="margin-top: 10px;">Share on Twitter</button>
+
+    <script>
+        // JavaScript Code
+        const seaFacts = [
+            {
+                "fact": "Vastness",
+                "description": "The ocean covers more than 70% of the Earth's surface and contains about 97% of the planet's water."
+            },
+            {
+                "fact": "Deepest Point",
+                "description": "The Mariana Trench is the deepest part of the world's oceans, reaching depths of about 36,000 feet (over 10,900 meters)."
+            },
+            {
+                "fact": "Marine Life",
+                "description": "The ocean is home to an estimated 230,000 known species, but scientists believe there could be over 2 million species yet to be discovered."
+            },
+            {
+                "fact": "Salinity",
+                "description": "The average salinity of ocean water is about 3.5%, meaning that there are approximately 35 grams of salt in every liter of seawater."
+            },
+            {
+                "fact": "Ocean Currents",
+                "description": "Ocean currents play a crucial role in regulating the Earth's climate by distributing heat around the planet."
+            },
+            {
+                "fact": "Oxygen Production",
+                "description": "Phytoplankton, tiny marine plants, produce about 50% of the Earth's oxygen through photosynthesis."
+            },
+            {
+                "fact": "Underwater Volcanoes",
+                "description": "There are more than 1 million underwater volcanoes, and many of them are still active."
+            },
+            {
+                "fact": "Tsunamis",
+                "description": "Tsunamis can travel across entire ocean basins at speeds of up to 500-600 miles per hour (800-965 kilometers per hour)."
+            },
+            {
+                "fact": "Coral Reefs",
+                "description": "Coral reefs are some of the most diverse ecosystems on the planet, supporting about 25% of all marine species."
+            },
+            {
+                "fact": "Ocean Exploration",
+                "description": "More than 80% of the ocean is still unexplored and unmapped, making it one of the last frontiers on Earth."
+            }
+        ];
+
+        document.getElementById('factButton').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * seaFacts.length);
+            const selectedFact = seaFacts[randomIndex];
+            const factDiv = document.getElementById('fact');
+            factDiv.innerHTML = `<strong>${selectedFact.fact}</strong>: ${selectedFact.description}`;
+            factDiv.style.opacity = 1; // Fade in effect
+        });
+
+        document.getElementById('twitterShare').addEventListener('click', function() {
+            const factDiv = document.getElementById('fact');
+            const tweetText = factDiv.innerHTML.replace(/<strong>|<\/strong>/g, ''); // Remove HTML tags
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
